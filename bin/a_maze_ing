@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require "a_maze_ing"
+
+puts 'app run'
+AMazeIng::GameWindow.new.show
