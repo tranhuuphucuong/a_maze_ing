@@ -16,12 +16,13 @@ module AMazeIng
       super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 1
       self.caption = "Maze"
       
+      new_round
       if @game_mode == 1
         @infor = Infor.new
       elsif @game_mode == 2
         @infor = Infor.new(Color::RED, Color::YELLOW)
       end
-      new_round
+
     end
 
     def new_round
