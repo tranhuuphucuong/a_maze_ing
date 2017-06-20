@@ -8,8 +8,8 @@ module AMazeIng
   SIDE_BAR = 180
   class GameWindow < Window
     $rows = $cols = 10
-    def initialize
-      super DIMENSION + SIDE_BAR, DIMENSION, false, 1
+    def initialize(full_screen)
+      super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 1
       self.caption = "Maze"
       generate_maze
       @infor = Infor.new
