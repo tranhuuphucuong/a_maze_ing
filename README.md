@@ -1,8 +1,12 @@
 # AMazeIng
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/a_maze_ing`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a small video game about maze, create on Gosu library. You need to find the way to specific point in the maze to win the game
 
-TODO: Delete this and the text above, and describe your gem
+(./images/cover.jpg)
+
+## Requirements
+
+This gem needs [Gosu](https://www.libgosu.org/) installed on your machine in order to render graphics
 
 ## Installation
 
@@ -22,7 +26,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After install AMazeIng run following command to play
+  
+    $ a_maze_ing
+
+## Features Todo List
+
+* Menu screen
+* Multiplayer mode - two player race to the target
+* Custom mode - custom difficulty
+* Enemy mode - Race to the target before get hit by the enemies
 
 ## Development
 

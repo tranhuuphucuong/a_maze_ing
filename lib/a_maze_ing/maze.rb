@@ -4,17 +4,10 @@ require 'gosu'
 include Gosu
 
 module AMazeIng
-  DIMENSION = 200
+  DIMENSION = 700
   SIDE_BAR = 180
   class GameWindow < Window
-    # $dimension = DIMENSION
     $rows = $cols = 10
-    # check_dimension
-
-    # $cell_size = $dimension/$cols
-    # $speed_per_tick = $cell_size/4
-    # $player_size = 0.5 * $cell_size
-
     def initialize
       super DIMENSION + SIDE_BAR, DIMENSION, false, 1
       self.caption = "Maze"
@@ -99,19 +92,16 @@ module AMazeIng
     end
 
     def check_for_finish
-      puts 'checking for finish'
       if @player.cell_index_x == $cells[-1].cell_index_x && @player.cell_index_y == $cells[-1].cell_index_y
         $rows += 2
         $cols += 2
         generate_maze
         @infor.level += 1
-
-
       end
     end
 
     def update
-      
+      check_for_finish
     end
 
     def draw
@@ -126,7 +116,6 @@ module AMazeIng
       @player.move
       @infor.draw
       draw_target($cells[-1])
-      check_for_finish
     end
 
     def button_down(id)

@@ -7,12 +7,13 @@ require "a_maze_ing/version"
 Gem::Specification.new do |spec|
   spec.name          = "a_maze_ing"
   spec.version       = AMazeIng::VERSION
-  spec.authors       = ["gt-cuongtran"]
-  spec.email         = ["cuong.tran.asiantech@gmail.com"]
+  spec.authors       = ["at-cuongtran"]
+  spec.email         = ["tranhuu.phucuong@gmail.com"]
 
-  spec.summary       = 'maze solving game'
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  # spec.homepage      = "public repo URL."
+  spec.summary       = %q{Maze solving game design on Gosu library}
+  spec.description   = %q{A fun and easy to play maze game with graphic. 
+    Maze randomly generate with difficulty increase evey level}
+  spec.homepage      = "https://github.com/at-cuongtran/a_maze_ing"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -27,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
+  puts spec.files
   spec.executables   = "a_maze_ing"
   # spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
