@@ -24,8 +24,15 @@ module AMazeIng
         c.syntax = 'a_maze_ing classic [options]'
         c.description = 'Classic mode, difficulty increase with level'
         c.action do 
-            AMazeIng::GameWindow.new(@full_screen).show
-          
+            AMazeIng::GameWindow.new(@full_screen,1).show
+        end
+      end
+
+      command :multiplayer do |c|
+        c.syntax = 'a_maze_ing multiplayer [options]'
+        c.description = 'Multiplayer mode, two player race to the target, player 2 use W/S/A/D key to move up/down/left/right'
+        c.action do 
+            AMazeIng::GameWindow.new(@full_screen,2).show
         end
       end
       

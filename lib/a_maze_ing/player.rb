@@ -1,9 +1,10 @@
 module AMazeIng
   class Player
     attr_accessor :cell_index_x, :cell_index_y, :target_x, :target_y, :is_moving, :path
-    def initialize(color)
+    def initialize(cell_index_x, cell_index_y, color)
       @color = color
-      @cell_index_x = @cell_index_y = 0
+      @cell_index_x = cell_index_x
+      @cell_index_y = cell_index_y
       @is_moving = false
       @path = nil
       set_target
@@ -31,6 +32,20 @@ module AMazeIng
       return path
     end
 
+    def set_status(path)
+      @path = path
+      if @path == 0 
+        @cell_index_y -= 1
+      elsif @path == 1 
+        @cell_index_x += 1
+      elsif @path == 2 
+        @cell_index_y += 1 
+      else
+        @cell_index_x -= 1
+      end
+      set_target
+    end
+
     def move
       if @is_moving
         if @x == @target_x && @y == @target_y
@@ -42,19 +57,11 @@ module AMazeIng
                                 @path == 2 ? 0: 1)
           if @path != nil
             # set new player's cell index depend on "current @path"
-            if @path == 0 
-              @cell_index_y -= 1
-            elsif @path == 1 
-              @cell_index_x += 1
-            elsif @path == 2 
-              @cell_index_y += 1 
-            else
-              @cell_index_x -= 1
-            end
+            set_status(@path)
             set_target
           else
             
-            # no "available" @path found player stop moving
+            # no "available" path found, player stop moving
             @is_moving = false
           end
         else

@@ -1,10 +1,6 @@
 module AMazeIng
   class Maze
 
-    def initialze
-      
-    end
-
     def check_dimension
       until $dimension/$cols % 4 == 0
         $dimension -= 1

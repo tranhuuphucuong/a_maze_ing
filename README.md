@@ -2,7 +2,9 @@
 
 This is a small video game about maze, create on Gosu library. You need to find the way to specific point in the maze to win the game
 
-![](./images/cover.jpg?raw=true)
+Classic mode             |  Multiplayer mode
+:-------------------------:|:-------------------------:
+![](./images/classic.jpg?raw=true)  |  ![](./images/multiplayer.jpg?raw=true)
 
 ## Requirements
 
@@ -36,6 +38,10 @@ or
 
     $ a_maze_ing classic
 
+To play in multiplayer mode run the following command:
+
+    $ a_maze_ing multiplayer
+
 Global Options: 
 
     --fullscreen (-f) will run the game in full screen mode
@@ -43,7 +49,6 @@ Global Options:
 ## Features Todo List
 
 * Menu screen
-* Multiplayer mode - two player race to the target
 * Custom mode - custom difficulty
 * Enemy mode - Race to the target before get hit by the enemies
 
