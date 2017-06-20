@@ -1,4 +1,4 @@
-module AmazeIng
+module AMazeIng
   module Configuration
 
     # Program configurations

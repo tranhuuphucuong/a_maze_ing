@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'commander'
 
-module AmazeIng
+module AMazeIng
   class CLI
     include Commander::Methods    
     
