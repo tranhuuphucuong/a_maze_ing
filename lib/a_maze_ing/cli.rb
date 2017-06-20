@@ -8,9 +8,9 @@ module AMazeIng
     def run
       @full_screen = false
 
-      program :name, AmazeIng::Configuration::PROGRAM_NAME
-      program :version, AmazeIng::VERSION
-      program :description, AmazeIng::Configuration::DESCRIPTION
+      program :name, AMazeIng::Configuration::PROGRAM_NAME
+      program :version, AMazeIng::VERSION
+      program :description, AMazeIng::Configuration::DESCRIPTION
 
       default_command :classic
 
