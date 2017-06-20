@@ -4,34 +4,40 @@ require 'gosu'
 include Gosu
 
 module AMazeIng
+  DIMENSION = 200
+  SIDE_BAR = 180
   class GameWindow < Window
-    $dimension = 550
-    $rows = $cols = 11
+    # $dimension = DIMENSION
+    $rows = $cols = 10
+    # check_dimension
 
-    until $dimension/$cols % 3 == 0
-      $dimension -= 1
-    end
-    
-    $cell_size = $dimension/$cols
-    $speed_per_tick = $cell_size/3
-    $player_size = 0.5 * $cell_size
-
-    $cells = Array.new
+    # $cell_size = $dimension/$cols
+    # $speed_per_tick = $cell_size/4
+    # $player_size = 0.5 * $cell_size
 
     def initialize
-      super $dimension + 100, $dimension, false
+      super DIMENSION + SIDE_BAR, DIMENSION, false, 1
       self.caption = "Maze"
       generate_maze
+      @infor = Infor.new
     end
 
+    def check_dimension
+      until $dimension/$cols % 4 == 0
+        $dimension -= 1
+      end
+    end
+    
     def generate_maze
+      $dimension = DIMENSION
+      check_dimension
+      $cell_size = $dimension/$cols
+      $speed_per_tick = $cell_size/4
+      $player_size = 0.5 * $cell_size
+
       $cells = Array.new
       @stack = Array.new
       @player = Player.new
-      # @player.set_position(0,0)
-
-      $cell_size = $dimension/$cols
-      $player_size = 0.5 * $cell_size
 
       $rows.times do |row_index|
         $cols.times do |col_index|
@@ -93,22 +99,22 @@ module AMazeIng
     end
 
     def check_for_finish
+      puts 'checking for finish'
       if @player.cell_index_x == $cells[-1].cell_index_x && @player.cell_index_y == $cells[-1].cell_index_y
-        puts 'finished'
-        $rows += 3
-        $cols += 3
+        $rows += 2
+        $cols += 2
         generate_maze
+        @infor.level += 1
+
+
       end
     end
-
-    
 
     def update
       
     end
 
     def draw
-
       $cells.each do |cell|
         if cell.visited 
           cell.draw($cell_size, Color::BLUE) 
@@ -118,23 +124,10 @@ module AMazeIng
       end
       @player.draw
       @player.move
+      @infor.draw
       draw_target($cells[-1])
+      check_for_finish
     end
-
-    # def check_for_path(ignore_path)
-    #   path = nil
-    #   $cells[@player.cell_index_x + @player.cell_index_y * $cols].walls.each_with_index do |wall, i|
-    #     if !wall and i != ignore_path
-    #       if path == nil
-    #         path = i
-    #       else 
-    #         path = nil
-    #         break
-    #       end
-    #     end
-    #   end
-    #   return path
-    # end
 
     def button_down(id)
       if id == Gosu::KB_LEFT
@@ -144,8 +137,6 @@ module AMazeIng
           @player.cell_index_x -= 1
           @player.set_target
           @player.is_moving = true
-          # @player.move_left
-          # check_for_finish
         end
       end
 
@@ -156,8 +147,6 @@ module AMazeIng
           @player.cell_index_x += 1
           @player.set_target
           @player.is_moving = true
-          # @player.move_right
-          # check_for_finish
         end
       end
 
@@ -168,8 +157,6 @@ module AMazeIng
           @player.cell_index_y -= 1
           @player.set_target
           @player.is_moving = true
-          # @player.move_up
-          # check_for_finish
         end
       end
       
@@ -180,8 +167,6 @@ module AMazeIng
           @player.cell_index_y += 1
           @player.set_target
           @player.is_moving = true
-          # @player.move_down
-          # check_for_finish
         end
       end
 
