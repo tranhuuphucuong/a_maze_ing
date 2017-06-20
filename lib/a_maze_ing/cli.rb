@@ -24,6 +24,7 @@ module AmazeIng
         c.action do 
           AMazeIng::GameWindow.new(@full_screen).show
         end
+      end
       # command :bar do |c|
       #   c.syntax = 'foobar bar [options]'
       #   c.description = 'Display bar with optional prefix and suffix'
