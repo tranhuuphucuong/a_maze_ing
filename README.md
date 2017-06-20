@@ -2,7 +2,7 @@
 
 This is a small video game about maze, create on Gosu library. You need to find the way to specific point in the maze to win the game
 
-(./images/cover.jpg?raw=true)
+![](./images/cover.jpg?raw=true)
 
 ## Requirements
 
