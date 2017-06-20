@@ -27,17 +27,7 @@ module AMazeIng
           AMazeIng::GameWindow.new(@full_screen).show
         end
       end
-      # command :bar do |c|
-      #   c.syntax = 'foobar bar [options]'
-      #   c.description = 'Display bar with optional prefix and suffix'
-      #   c.option '-p', '--prefix STRING', String, 'Adds a prefix to bar'
-      #   c.option '-s', '--suffix STRING', String, 'Adds a suffix to bar'
-      #   c.action do |args, options|
-      #     options.default :prefix => '(', :suffix => ')'
-      #     say "#{options.prefix}bar#{options.suffix}"
-      #   end
-      # end
-
+      
       run!
     end
 

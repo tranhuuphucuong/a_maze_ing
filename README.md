@@ -26,9 +26,16 @@ Or install it yourself as:
 
 ## Usage
 
-After install AMazeIng run following command to play
-  
+After install AMazeIng you can quickly run the game in classic mode by excecute the following command:
+
     $ a_maze_ing
+or 
+    $ a_maze_ing classic
+
+Global Options: 
+
+--fullscreen (-f) will run the game in full screen mode
+
 
 ## Features Todo List
 
