@@ -24,7 +24,8 @@ module AMazeIng
         c.syntax = 'a_maze_ing classic [options]'
         c.description = 'Classic mode, difficulty increase with level'
         c.action do 
-          AMazeIng::GameWindow.new(@full_screen).show
+            AMazeIng::GameWindow.new(@full_screen).show
+          
         end
       end
       

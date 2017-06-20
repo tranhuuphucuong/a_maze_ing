@@ -1,18 +1,8 @@
-#!/usr/bin/env ruby
-# credits to: http://en.wikipedia.org/wiki/Maze_generation_algorithm
-require 'gosu'
-include Gosu
-
 module AMazeIng
-  DIMENSION = 700
-  SIDE_BAR = 180
-  class GameWindow < Window
-    $rows = $cols = 10
-    def initialize(full_screen)
-      super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 1
-      self.caption = "Maze"
-      generate_maze
-      @infor = Infor.new
+  class Maze
+
+    def initialze
+      
     end
 
     def check_dimension
@@ -30,7 +20,7 @@ module AMazeIng
 
       $cells = Array.new
       @stack = Array.new
-      @player = Player.new
+      
 
       $rows.times do |row_index|
         $cols.times do |col_index|
@@ -80,90 +70,5 @@ module AMazeIng
       end
     end
 
-    def draw_target(cell)
-      cell_index_x = cell.cell_index_x
-      cell_index_y = cell.cell_index_y
-      x = (cell_index_x * $cell_size) + $cell_size/2 - $player_size/2
-      y = (cell_index_y * $cell_size) + $cell_size/2 - $player_size/2
-      draw_quad x, y, Color::GREEN,
-                x+$player_size, y, Color::GREEN,
-                x+$player_size, y+$player_size, Color::GREEN,
-                x, y+$player_size, Color::GREEN
-    end
-
-    def check_for_finish
-      if @player.cell_index_x == $cells[-1].cell_index_x && @player.cell_index_y == $cells[-1].cell_index_y
-        $rows += 2
-        $cols += 2
-        generate_maze
-        @infor.level += 1
-      end
-    end
-
-    def update
-      check_for_finish
-    end
-
-    def draw
-      $cells.each do |cell|
-        if cell.visited 
-          cell.draw($cell_size, Color::BLUE) 
-        else
-          cell.draw($cell_size, Color::GREEN)
-        end
-      end
-      @player.draw
-      @player.move
-      @infor.draw
-      draw_target($cells[-1])
-    end
-
-    def button_down(id)
-      if id == Gosu::KB_LEFT
-        if !$cells[@player.cell_index_x + @player.cell_index_y * $cols].walls[3]
-          
-          @player.path = 3
-          @player.cell_index_x -= 1
-          @player.set_target
-          @player.is_moving = true
-        end
-      end
-
-      if id == Gosu::KB_RIGHT
-        if !$cells[@player.cell_index_x + @player.cell_index_y * $cols].walls[1]
-          
-          @player.path = 1
-          @player.cell_index_x += 1
-          @player.set_target
-          @player.is_moving = true
-        end
-      end
-
-      if id == Gosu::KB_UP
-        if !$cells[@player.cell_index_x + @player.cell_index_y * $cols].walls[0]
-          
-          @player.path = 0
-          @player.cell_index_y -= 1
-          @player.set_target
-          @player.is_moving = true
-        end
-      end
-      
-      if id == Gosu::KB_DOWN
-        if !$cells[@player.cell_index_x + @player.cell_index_y * $cols].walls[2]
-          
-          @player.path = 2
-          @player.cell_index_y += 1
-          @player.set_target
-          @player.is_moving = true
-        end
-      end
-
-      if id == Gosu::KB_ESCAPE
-        close
-      else
-        super
-      end
-    end
   end
 end

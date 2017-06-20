@@ -11,8 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tranhuu.phucuong@gmail.com"]
 
   spec.summary       = %q{Maze solving game design on Gosu library}
-  spec.description   = %q{A fun and easy to play maze game with graphic. 
-    Maze randomly generate with difficulty increase evey level}
+  spec.description   = %q{A fun and easy to play maze game with 2D graphics render by Gosu library.}
   spec.homepage      = "https://github.com/at-cuongtran/a_maze_ing"
   spec.license       = "MIT"
 
@@ -36,6 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_runtime_dependency "gosu","~> 0.12.0"
+  # spec.add_runtime_dependency "gosu","~> 0.12.0"
   spec.add_runtime_dependency "commander", "~> 4.4.3"
 end

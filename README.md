@@ -8,6 +8,8 @@ This is a small video game about maze, create on Gosu library. You need to find 
 
 This gem needs [Gosu](https://www.libgosu.org/) installed on your machine in order to render graphics
 
+To install, follow the constructions in [Gosu's documentation](https://github.com/gosu/gosu/wiki) on Github
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -29,13 +31,14 @@ Or install it yourself as:
 After install AMazeIng you can quickly run the game in classic mode by excecute the following command:
 
     $ a_maze_ing
-or 
+
+or
+
     $ a_maze_ing classic
 
 Global Options: 
 
---fullscreen (-f) will run the game in full screen mode
-
+    --fullscreen (-f) will run the game in full screen mode
 
 ## Features Todo List
 
