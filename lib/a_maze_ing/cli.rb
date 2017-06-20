@@ -8,9 +8,11 @@ module AMazeIng
     def run
       @full_screen = false
 
-      program :name, AMazeIng::Configuration::PROGRAM_NAME
+      # program :name, AMazeIng::Configuration::PROGRAM_NAME 
+      program :name "AMazeIng"
       program :version, AMazeIng::VERSION
-      program :description, AMazeIng::Configuration::DESCRIPTION
+      # program :description, AMazeIng::Configuration::DESCRIPTION 
+      program :description, "Maze solving game... don't be addicted" 
 
       default_command :classic
 
