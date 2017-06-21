@@ -21,11 +21,15 @@ module AMazeIng
         @infor = Infor.new
       elsif @game_mode == 2
         @infor = Infor.new(Color::GREEN, Color::AQUA)
+      elsif @game_mode == 3
+        @infor = Infor.new(Color::GREEN, Color::RED)
       end
 
     end
 
     def new_round
+      $rows += 2
+      $cols += 2
       @maze = Maze.new
       @maze.generate_maze
       if @game_mode == 1
@@ -33,7 +37,11 @@ module AMazeIng
       elsif @game_mode == 2
         @player = Player.new(1, 0, Color::GREEN)
         @player_2 = Player.new(0, 1, Color::AQUA)
+      elsif @game_mode == 3
+        @player = Player.new(1, 0, Color::GREEN)
+        @player_2 = Player.new($cols-1, 0, Color::RED)
       end
+      
     end
 
     def draw_target(cell)
@@ -49,12 +57,20 @@ module AMazeIng
 
     def check_for_finish(player)
       if player.cell_index_x == $cells[-1].cell_index_x && player.cell_index_y == $cells[-1].cell_index_y
-        $rows += 2
-        $cols += 2
         new_round
         @infor.level += 1
         return true
       else 
+        return false
+      end
+    end
+
+    def check_for_collision(player_1, player_2)
+      if player_2.cell_index_x == player_1.cell_index_x and player_2.cell_index_y == player_1.cell_index_y
+        new_round
+        @infor.level += 1
+        return true
+      else
         return false
       end
     end
@@ -64,9 +80,7 @@ module AMazeIng
       if @game_mode == 1
         check_for_finish(@player)
         @player.move
-      end
-
-      if @game_mode == 2 
+      elsif @game_mode == 2
         if check_for_finish(@player)
           @infor.player_1_point += 1
         end
@@ -75,7 +89,17 @@ module AMazeIng
           @infor.player_2_point += 1
         end
         @player_2.move
+      elsif @game_mode == 3
+        if check_for_finish(@player)
+          @infor.player_1_point += 1
+        end
+        @player.move
+        if check_for_collision(@player, @player_2)
+          @infor.player_2_point += 1
+        end
+        @player_2.move
       end
+
       @infor.update
     end
 
@@ -88,7 +112,7 @@ module AMazeIng
         end
       end
       @player.draw
-      @player_2.draw if @game_mode == 2 
+      @player_2.draw if @game_mode == 2 or @game_mode == 3
       @infor.draw
       draw_target($cells[-1])
     end
@@ -121,7 +145,7 @@ module AMazeIng
       end
 
       # control keys for player 2
-      if @game_mode == 2 
+      if @game_mode == 2 or @game_mode == 3
 
         if id == Gosu::KB_A
           check_available_move(3, @player_2)

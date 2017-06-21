@@ -2,9 +2,13 @@
 
 This is a small video game about maze, create on Gosu library. Solve the maze yourself or play with friend.
 
-Classic mode             |  Multiplayer mode
+Classic mode               |    Multiplayer mode
 :-------------------------:|:-------------------------:
 ![](./images/classic.jpg?raw=true)  |  ![](./images/multiplayer.jpg?raw=true)
+
+Annoying Friend mode       |    
+:-------------------------:|:-------------------------:
+![](./images/annoying_friend.jpg?raw=true)  |  
 
 ## Requirements
 
@@ -38,9 +42,13 @@ or
 
     $ a_maze_ing classic
 
-To play in multiplayer mode run the following command:
+To play in Multiplayer mode run the following command:
 
-    $ a_maze_ing multiplayer
+    $ a_maze_ing m
+
+To play in Annoying Friend mode run the following command:
+
+    $ a_maze_ing af
 
 Global Options: 
 

@@ -20,6 +20,7 @@ module AMazeIng
         @full_screen = true
       }
 
+
       command :classic do |c|
         c.syntax = 'a_maze_ing classic [options]'
         c.description = 'Classic mode, difficulty increase with level'
@@ -30,12 +31,23 @@ module AMazeIng
 
       command :multiplayer do |c|
         c.syntax = 'a_maze_ing multiplayer [options]'
-        c.description = 'Multiplayer mode, two player race to the target, player 2 use W/S/A/D key to move up/down/left/right'
+        c.description = 'Multiplayer mode, two player race to the gate, player 2 use W/S/A/D key to move up/down/left/right'
         c.action do 
             AMazeIng::GameWindow.new(@full_screen,2).show
         end
       end
-      
+      alias_command :'m', :multiplayer
+
+
+      command :annoying_friend do |c|
+        c.syntax = 'a_maze_ing anfri [options]'
+        c.description = 'feuded friend mode, player 1 try to get to the gate while the player 2(annoying friend) try to catch him'
+        c.action do 
+            AMazeIng::GameWindow.new(@full_screen,3).show
+        end
+      end
+      alias_command :'af', :annoying_friend, :'anfri', :'multiplayer2', :'multiplayer_2'
+
       run!
     end
 
