@@ -8,7 +8,9 @@ Classic mode               |    Multiplayer mode
 
 Annoying Friend mode       |    Time Hunter mode
 :-------------------------:|:-------------------------:
-![](./images/annoying_friend.jpg?raw=true)  |  Incomming
+![](./images/annoying_friend.jpg?raw=true)  |  Comming soon, I'm working on it 
+
+
 
 ## Requirements
 
