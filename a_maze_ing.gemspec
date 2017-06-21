@@ -11,7 +11,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["tranhuu.phucuong@gmail.com"]
 
   spec.summary       = %q{Maze solving game design on Gosu library}
-  spec.description   = %q{A maze game that is fun and easy to play, available for 2 player with 2D graphics render by Gosu library.}
+  spec.description   = %q{A maze game that is fun and easy to play, 
+    available for 2 player with 2D graphics render by Gosu library. 
+    Include Classic mode, Multiplayer mode and Annoying Ffriend mode }
   spec.homepage      = "https://github.com/at-cuongtran/a_maze_ing"
   spec.license       = "MIT"
 

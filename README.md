@@ -6,9 +6,9 @@ Classic mode               |    Multiplayer mode
 :-------------------------:|:-------------------------:
 ![](./images/classic.jpg?raw=true)  |  ![](./images/multiplayer.jpg?raw=true)
 
-Annoying Friend mode       |    
+Annoying Friend mode       |    Time Hunter mode
 :-------------------------:|:-------------------------:
-![](./images/annoying_friend.jpg?raw=true)  |  
+![](./images/annoying_friend.jpg?raw=true)  |  Incomming
 
 ## Requirements
 
