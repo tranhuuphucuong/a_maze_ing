@@ -4,6 +4,7 @@ module AMazeIng
     def initialize(*player_color)
       @player_color = player_color
 
+      # This class will renders information of the game, like points and level
 
       #---------------------------------------------------------------------------------#
       # create code block (initial, update and draw) for different game mode            #
@@ -15,6 +16,7 @@ module AMazeIng
         
           @level = 1
           @level_image = Gosu::Image.from_text @level.to_s, 36
+          
           @label = 'LEVEL'
           @label_image = Gosu::Image.from_text @label, 40
           

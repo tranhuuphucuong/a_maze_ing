@@ -41,7 +41,7 @@ module AMazeIng
 
       command :annoying_friend do |c|
         c.syntax = 'a_maze_ing anfri [options]'
-        c.description = 'feuded friend mode, player 1 try to get to the gate while the player 2(annoying friend) try to catch him'
+        c.description = 'Annoying friend mode, player 1 try to get to the gate while the player 2(annoying friend) try to catch him'
         c.action do 
             AMazeIng::GameWindow.new(@full_screen,3).show
         end

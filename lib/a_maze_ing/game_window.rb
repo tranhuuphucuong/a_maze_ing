@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# cGREENits to: http://en.wikipedia.org/wiki/Maze_generation_algorithm
 
 require 'gosu'
 include Gosu
@@ -8,15 +7,28 @@ require "observer"
 module AMazeIng
   DIMENSION = 700
   SIDE_BAR = 180
+  ROWS = COLS = 10
   PLAYER_COLOR_PRIMARY = Color::GREEN
   PLAYER_COLOR_SECONDARY = Color::AQUA
   PLAYER_COLOR_ANGRY = Color::RED
+
+  # the rate of character speed, in pixel, 
+  # the higher step rate the slower character will move
+  STEP_RATE = 4
+  
+
+  # Change this if you don't want it to be at bottom right
+  TARGET_CELL_INDEX_X = COLS - 1
+  TARGET_CELL_INDEX_Y = ROWS - 1
+
   class GameWindow < Window
-    $rows = $cols = 10
+    $rows = $cols = ROWS
     def initialize(full_screen, game_mode)
       @game_mode = game_mode
       super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 30
       self.caption = "Maze"
+
+      
       
       #---------------------------------------------------------------------------------#
       # create code block (update, player_draw and new_player) for different game mode  #
@@ -88,7 +100,11 @@ module AMazeIng
         @infor = Infor.new(PLAYER_COLOR_PRIMARY, PLAYER_COLOR_ANGRY)
       end
 
-    end
+      @target_x = (TARGET_CELL_INDEX_X * $cell_size) + $cell_size/2 - $player_size/2
+      @target_y = (TARGET_CELL_INDEX_Y * $cell_size) + $cell_size/2 - $player_size/2
+
+    end # End initialize function
+    
 
     def new_round
       $rows += 2
@@ -99,14 +115,10 @@ module AMazeIng
     end
 
     def draw_target(cell)
-      cell_index_x = cell.cell_index_x
-      cell_index_y = cell.cell_index_y
-      x = (cell_index_x * $cell_size) + $cell_size/2 - $player_size/2
-      y = (cell_index_y * $cell_size) + $cell_size/2 - $player_size/2
-      draw_quad x, y, Color::WHITE,
-                x+$player_size, y, Color::WHITE,
-                x+$player_size, y+$player_size, Color::WHITE,
-                x, y+$player_size, Color::WHITE
+      draw_quad @target_x,                @target_y,                Color::WHITE,
+                @target_x + $player_size, @target_y,                Color::WHITE,
+                @target_x + $player_size, @target_y + $player_size, Color::WHITE,
+                @target_x,                @target_y + $player_size, Color::WHITE
     end
 
     def check_for_finish(player)

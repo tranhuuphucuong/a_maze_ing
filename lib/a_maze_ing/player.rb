@@ -49,12 +49,13 @@ module AMazeIng
     def move
       if @is_moving
         if @x == @target_x && @y == @target_y
+          
           # check for available path, 
-          # and ignore the the opposite of the LAST path 
+          # and ignore the the opposite directions of the LAST path 
           # cuz you don't wanna go back where you just left
           @path = check_for_path(@path == 0 ? 2:
-                                @path == 1 ? 3:
-                                @path == 2 ? 0: 1)
+                                 @path == 1 ? 3:
+                                 @path == 2 ? 0: 1)
           if @path != nil
             # set new player's cell index depend on "current @path"
             set_status(@path)
@@ -85,10 +86,10 @@ module AMazeIng
     end
 
     def draw
-      draw_quad @x, @y, @color,
-                @x+$player_size, @y, @color,
-                @x+$player_size, @y+$player_size, @color,
-                @x, @y+$player_size, @color
+      draw_quad @x,                @y,                @color,
+                @x + $player_size, @y,                @color,
+                @x + $player_size, @y + $player_size, @color,
+                @x,                @y + $player_size, @color
     end
   end
 end

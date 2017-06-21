@@ -11,9 +11,16 @@ module AMazeIng
       @is_current = false
     end
 
+    # cell_index is the index in cells array
+    # cell_index_x and cell_index_y are index of cells in vitual grid
+
+    # Get cell_index by cell_index_x and cell_index_y
+    # if the given indexes is invalid (outside the maze) 
+    # it will return cells_length, 
+    # which will cause the returned cell (neighbor) to be equal to nil
     def cell_index(i, j, cells_length)
       if i < 0 || j < 0 || i > $cols-1 || j > $rows-1
-        return cells_length # cause the cell (neighbor) equal nil
+        return cells_length # cause the cell to be (neighbor) equal to nil
       else
         return i + j * $cols
       end
@@ -22,10 +29,10 @@ module AMazeIng
     def get_random_neighbor(cells)
       @neigh_bors = Array.new
 
-      top    = cells[cell_index(cell_index_x, cell_index_y - 1, cells.length)]
-      right  = cells[cell_index(cell_index_x + 1, cell_index_y, cells.length)]
-      bottom = cells[cell_index(cell_index_x, cell_index_y + 1, cells.length)]
-      left   = cells[cell_index(cell_index_x - 1, cell_index_y, cells.length)]
+      top    = cells[cell_index(cell_index_x,     cell_index_y - 1, cells.length)]
+      right  = cells[cell_index(cell_index_x + 1, cell_index_y,     cells.length)]
+      bottom = cells[cell_index(cell_index_x,     cell_index_y + 1, cells.length)]
+      left   = cells[cell_index(cell_index_x - 1, cell_index_y,     cells.length)]
 
       if top
         if !top.visited
@@ -65,23 +72,23 @@ module AMazeIng
       y = @cell_index_y * cell_size
 
       if @walls[0] 
-        draw_line x, y, color,
-                  x + cell_size, y, color
+        draw_line x,             y,             color,
+                  x + cell_size, y,             color
       end
 
       if @walls[1] 
-        draw_line x + cell_size, y, color,
+        draw_line x + cell_size, y,             color,
                   x + cell_size, y + cell_size, color
       end
 
       if @walls[2] 
         draw_line x + cell_size, y + cell_size, color,
-                  x, y + cell_size, color
+                  x,             y + cell_size, color
       end
 
       if @walls[3] 
-        draw_line x, y + cell_size, color,
-                  x, y, color
+        draw_line x,             y + cell_size, color,
+                  x,             y,             color
       end
     end
   end
