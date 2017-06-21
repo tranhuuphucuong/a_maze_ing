@@ -56,6 +56,28 @@ Global Options:
 
     --fullscreen (-f) will run the game in full screen mode
 
+## Construction
+
+### Control keys
+
+Normaly you can use Up, Down, Left, Right key to move your character to that specific direction.
+
+In two player mode, player 2 will use W, S, A, D key to move Up, Down, Left and Right instead.
+
+### Game mode
+
+#### Classic mode
+
+Find the way to the gate (the white square), the maze will get more complex as level increase
+
+#### Multiplayer mode
+
+There will be two player control two square, green and cyan, race to the gate (white square) at the same time. Who get solve the maze first will get the point. 
+
+#### Annoying Friend mode
+
+There will be also two player control two square but green and red. Player 2 will control the red square and not race to the gate but try to catch his friend (the green one). Players will get point if he/she finished his/her mission
+
 ## Features Todo List
 
 * Menu screen
