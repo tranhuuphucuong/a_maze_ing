@@ -13,13 +13,13 @@ module AMazeIng
 
     def cell_index(i, j, cells_length)
       if i < 0 || j < 0 || i > $cols-1 || j > $rows-1
-        return cells_length
+        return cells_length # cause the cell (neighbor) equal nil
       else
         return i + j * $cols
       end
     end
 
-    def check_neigh_bors(cells)
+    def get_random_neighbor(cells)
       @neigh_bors = Array.new
 
       top    = cells[cell_index(cell_index_x, cell_index_y - 1, cells.length)]

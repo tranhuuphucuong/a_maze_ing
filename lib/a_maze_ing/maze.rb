@@ -31,7 +31,7 @@ module AMazeIng
       @stack.push(@current_cell)
 
       while @stack.length > 0 do 
-        next_cell = @current_cell.check_neigh_bors($cells)
+        next_cell = @current_cell.get_random_neighbor($cells)
         if next_cell
           remove_walls(@current_cell, next_cell)
           next_cell.visited = true
@@ -43,28 +43,40 @@ module AMazeIng
           @current_cell = @stack.pop
         end
       end
+      remove_extra_walls 
     end
 
     def remove_walls(current_cell, next_cell)
-      magic_number =  next_cell.cell_index_x - current_cell.cell_index_x
-      if magic_number == 1
-        # next cell is on the right
-        current_cell.walls[1] = next_cell.walls[3] = false
-      elsif magic_number == -1
-        # next cell is on the left
-        current_cell.walls[3] = next_cell.walls[1] = false
-      elsif magic_number == 0
-        # next cell is either on top or bottom
-        magic_number = next_cell.cell_index_y - current_cell.cell_index_y
+      if next_cell != nil
+        magic_number =  next_cell.cell_index_x - current_cell.cell_index_x
         if magic_number == 1
-          #next cell is bottom
-          current_cell.walls[2] = next_cell.walls[0] = false
-        elsif magic_number ==-1
-          #next cell is on top
-          current_cell.walls[0] = next_cell.walls[2] = false
+          # next cell is on the right
+          current_cell.walls[1] = next_cell.walls[3] = false
+        elsif magic_number == -1
+          # next cell is on the left
+          current_cell.walls[3] = next_cell.walls[1] = false
+        elsif magic_number == 0
+          # next cell is either on top or bottom
+          magic_number = next_cell.cell_index_y - current_cell.cell_index_y
+          if magic_number == 1
+            #next cell is bottom
+            current_cell.walls[2] = next_cell.walls[0] = false
+          elsif magic_number ==-1
+            #next cell is on top
+            current_cell.walls[0] = next_cell.walls[2] = false
+          end
         end
       end
     end
 
+    def remove_extra_walls
+      a_count_number = $cells.length/2/5
+      while a_count_number > 0 do
+        cell_index = rand(0..$cells.length/2)
+        # wall_index = rand(0..3)
+        remove_walls($cells[cell_index], $cells[cell_index+1])
+        a_count_number -= 1
+      end
+    end
   end
 end

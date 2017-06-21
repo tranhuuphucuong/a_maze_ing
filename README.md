@@ -1,6 +1,6 @@
 # AMazeIng
 
-This is a small video game about maze, create on Gosu library. You need to find the way to specific point in the maze to win the game
+This is a small video game about maze, create on Gosu library. Solve the maze yourself or play with friend.
 
 Classic mode             |  Multiplayer mode
 :-------------------------:|:-------------------------:

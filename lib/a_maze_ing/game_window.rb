@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# credits to: http://en.wikipedia.org/wiki/Maze_generation_algorithm
+# cGREENits to: http://en.wikipedia.org/wiki/Maze_generation_algorithm
 
 require 'gosu'
 include Gosu
@@ -20,7 +20,7 @@ module AMazeIng
       if @game_mode == 1
         @infor = Infor.new
       elsif @game_mode == 2
-        @infor = Infor.new(Color::RED, Color::YELLOW)
+        @infor = Infor.new(Color::GREEN, Color::AQUA)
       end
 
     end
@@ -29,10 +29,10 @@ module AMazeIng
       @maze = Maze.new
       @maze.generate_maze
       if @game_mode == 1
-        @player = Player.new(1, 0, Color::RED)
+        @player = Player.new(1, 0, Color::GREEN)
       elsif @game_mode == 2
-        @player = Player.new(1, 0, Color::RED)
-        @player_2 = Player.new(0, 1, Color::YELLOW)
+        @player = Player.new(1, 0, Color::GREEN)
+        @player_2 = Player.new(0, 1, Color::AQUA)
       end
     end
 
@@ -41,10 +41,10 @@ module AMazeIng
       cell_index_y = cell.cell_index_y
       x = (cell_index_x * $cell_size) + $cell_size/2 - $player_size/2
       y = (cell_index_y * $cell_size) + $cell_size/2 - $player_size/2
-      draw_quad x, y, Color::GREEN,
-                x+$player_size, y, Color::GREEN,
-                x+$player_size, y+$player_size, Color::GREEN,
-                x, y+$player_size, Color::GREEN
+      draw_quad x, y, Color::WHITE,
+                x+$player_size, y, Color::WHITE,
+                x+$player_size, y+$player_size, Color::WHITE,
+                x, y+$player_size, Color::WHITE
     end
 
     def check_for_finish(player)
