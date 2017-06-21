@@ -23,13 +23,13 @@ module AMazeIng
 
   class GameWindow < Window
     $rows = $cols = ROWS
+    $target_cell_index_x = TARGET_CELL_INDEX_X
+    $target_cell_index_y = TARGET_CELL_INDEX_Y
     def initialize(full_screen, game_mode)
       @game_mode = game_mode
       super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 30
       self.caption = "Maze"
 
-      
-      
       #---------------------------------------------------------------------------------#
       # create code block (update, player_draw and new_player) for different game mode  #
       #---------------------------------------------------------------------------------#
@@ -100,9 +100,6 @@ module AMazeIng
         @infor = Infor.new(PLAYER_COLOR_PRIMARY, PLAYER_COLOR_ANGRY)
       end
 
-      @target_x = (TARGET_CELL_INDEX_X * $cell_size) + $cell_size/2 - $player_size/2
-      @target_y = (TARGET_CELL_INDEX_Y * $cell_size) + $cell_size/2 - $player_size/2
-
     end # End initialize function
     
 
@@ -111,10 +108,14 @@ module AMazeIng
       $cols += 2
       @maze = Maze.new
       @maze.generate_maze
-      @new_player_lambda.call      
+      @new_player_lambda.call
+      $target_cell_index_x += 2
+      $target_cell_index_y += 2
+      @target_x = ($target_cell_index_x * $cell_size) + $cell_size/2 - $player_size/2
+      @target_y = ($target_cell_index_y * $cell_size) + $cell_size/2 - $player_size/2
     end
 
-    def draw_target(cell)
+    def draw_target
       draw_quad @target_x,                @target_y,                Color::WHITE,
                 @target_x + $player_size, @target_y,                Color::WHITE,
                 @target_x + $player_size, @target_y + $player_size, Color::WHITE,
@@ -122,7 +123,7 @@ module AMazeIng
     end
 
     def check_for_finish(player)
-      if player.cell_index_x == $cells[-1].cell_index_x and player.cell_index_y == $cells[-1].cell_index_y
+      if player.x == @target_x and player.y == @target_y
         new_round
         @infor.level += 1
         return true
@@ -132,7 +133,7 @@ module AMazeIng
     end
 
     def check_for_collision(player_1, player_2)
-      if player_2.cell_index_x == player_1.cell_index_x and player_2.cell_index_y == player_1.cell_index_y
+      if (player_2.x - player_1.x).abs < $player_size and (player_2.y - player_1.y).abs < $player_size
         new_round
         @infor.level += 1
         return true
@@ -156,7 +157,7 @@ module AMazeIng
       end
       @player_draw_lambda.call
       @infor.draw
-      draw_target($cells[-1])
+      draw_target
     end
 
     # check weather the direction player want to go to available or not

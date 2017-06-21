@@ -1,6 +1,6 @@
 module AMazeIng
   class Player
-    attr_accessor :cell_index_x, :cell_index_y, :target_x, :target_y, :is_moving, :path
+    attr_accessor :cell_index_x, :cell_index_y, :target_x, :target_y, :is_moving, :path, :x, :y
     def initialize(cell_index_x, cell_index_y, color)
       @color = color
       @cell_index_x = cell_index_x
