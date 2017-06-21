@@ -8,21 +8,84 @@ require "observer"
 module AMazeIng
   DIMENSION = 700
   SIDE_BAR = 180
-
+  PLAYER_COLOR_PRIMARY = Color::GREEN
+  PLAYER_COLOR_SECONDARY = Color::AQUA
+  PLAYER_COLOR_ANGRY = Color::RED
   class GameWindow < Window
     $rows = $cols = 10
     def initialize(full_screen, game_mode)
       @game_mode = game_mode
-      super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 1
+      super DIMENSION + SIDE_BAR, DIMENSION, full_screen, 30
       self.caption = "Maze"
       
+      #---------------------------------------------------------------------------------#
+      # create code block (update, player_draw and new_player) for different game mode  #
+      #---------------------------------------------------------------------------------#
+      if @game_mode == 1
+        @update_lambda = lambda {
+          check_for_finish(@player)
+          @player.move
+        }
+        @player_draw_lambda = lambda {
+          @player.draw
+        }
+        @new_player_lambda = lambda {
+          @player = Player.new(1, 0, PLAYER_COLOR_PRIMARY)
+        }
+      elsif @game_mode == 2
+        @update_lambda = lambda {
+
+          if check_for_finish(@player)
+            @infor.player_1_point += 1
+          end
+          @player.move
+          if check_for_finish(@player_2)
+            @infor.player_2_point += 1
+          end
+          @player_2.move
+
+        }
+        @player_draw_lambda = lambda {
+          @player.draw
+          @player_2.draw
+        }
+        @new_player_lambda = lambda {
+          @player = Player.new(1, 0, PLAYER_COLOR_PRIMARY)
+          @player_2 = Player.new(0, 1, PLAYER_COLOR_SECONDARY)
+        }
+      elsif @game_mode == 3
+        @update_lambda = lambda {
+
+          if check_for_finish(@player)
+            @infor.player_1_point += 1
+          end
+          @player.move
+          if check_for_collision(@player, @player_2)
+            @infor.player_2_point += 1
+          end
+          @player_2.move
+
+        }
+        @player_draw_lambda = lambda {
+          @player.draw
+          @player_2.draw
+        }
+        @new_player_lambda = lambda {
+          @player = Player.new(1, 0, PLAYER_COLOR_PRIMARY)
+          @player_2 = Player.new($cols-1, 0, PLAYER_COLOR_ANGRY)
+        }
+      end
+      #-------------------------#
+      # end create code block   #
+      #-------------------------#
+
       new_round
       if @game_mode == 1
         @infor = Infor.new
       elsif @game_mode == 2
-        @infor = Infor.new(Color::GREEN, Color::AQUA)
+        @infor = Infor.new(PLAYER_COLOR_PRIMARY, PLAYER_COLOR_SECONDARY)
       elsif @game_mode == 3
-        @infor = Infor.new(Color::GREEN, Color::RED)
+        @infor = Infor.new(PLAYER_COLOR_PRIMARY, PLAYER_COLOR_ANGRY)
       end
 
     end
@@ -32,16 +95,7 @@ module AMazeIng
       $cols += 2
       @maze = Maze.new
       @maze.generate_maze
-      if @game_mode == 1
-        @player = Player.new(1, 0, Color::GREEN)
-      elsif @game_mode == 2
-        @player = Player.new(1, 0, Color::GREEN)
-        @player_2 = Player.new(0, 1, Color::AQUA)
-      elsif @game_mode == 3
-        @player = Player.new(1, 0, Color::GREEN)
-        @player_2 = Player.new($cols-1, 0, Color::RED)
-      end
-      
+      @new_player_lambda.call      
     end
 
     def draw_target(cell)
@@ -56,7 +110,7 @@ module AMazeIng
     end
 
     def check_for_finish(player)
-      if player.cell_index_x == $cells[-1].cell_index_x && player.cell_index_y == $cells[-1].cell_index_y
+      if player.cell_index_x == $cells[-1].cell_index_x and player.cell_index_y == $cells[-1].cell_index_y
         new_round
         @infor.level += 1
         return true
@@ -76,43 +130,19 @@ module AMazeIng
     end
 
     def update
-      
-      if @game_mode == 1
-        check_for_finish(@player)
-        @player.move
-      elsif @game_mode == 2
-        if check_for_finish(@player)
-          @infor.player_1_point += 1
-        end
-        @player.move
-        if check_for_finish(@player_2)
-          @infor.player_2_point += 1
-        end
-        @player_2.move
-      elsif @game_mode == 3
-        if check_for_finish(@player)
-          @infor.player_1_point += 1
-        end
-        @player.move
-        if check_for_collision(@player, @player_2)
-          @infor.player_2_point += 1
-        end
-        @player_2.move
-      end
-
+      @update_lambda.call
       @infor.update
-    end
+     end
 
     def draw
       $cells.each do |cell|
         if cell.visited 
           cell.draw($cell_size, Color::BLUE) 
         else
-          cell.draw($cell_size, Color::GREEN)
+          cell.draw($cell_size, PLAYER_COLOR_PRIMARY)
         end
       end
-      @player.draw
-      @player_2.draw if @game_mode == 2 or @game_mode == 3
+      @player_draw_lambda.call
       @infor.draw
       draw_target($cells[-1])
     end
@@ -171,7 +201,5 @@ module AMazeIng
         super
       end
     end
-
-
   end
 end
