@@ -14,10 +14,34 @@ Annoying Friend mode       |    Time Hunter mode
 
 ## Requirements
 
-This gem needs [Gosu](https://www.libgosu.org/) installed on your machine in order to render graphics
+[Gosu](https://www.libgosu.org/) gem requires some libraries to be installed system-wide. If you got error installing gosu during install process, follow below instruction
 
-To install, follow the constructions in [Gosu's documentation](https://github.com/gosu/gosu/wiki) on Github
+### OSX
 
+Gosu depends on the [SDL 2 library](http://www.libsdl.org/). Please install [Homebrew]{http://brew.sh/} and run 
+
+    brew install sdl2.
+
+And then install a_maze_ing again
+
+### Ubuntu
+
+In order to install Gosu on Linux, you need the following packages (the names will be slightly different in every distribution):
+
+`libsdl2-dev`, `libsdl2-ttf-dev`, `libpango1.0-dev`, `libgl1-mesa-dev`, `libopenal-dev`, `libsndfile-dev`, `libmpg123-dev` (starting in 0.12.0)
+
+
+Run following command to install
+
+    $ sudo apt-get install build-essential libsdl2-dev libsdl2-ttf-dev libpango1.0-dev \
+                     libgl1-mesa-dev libopenal-dev libsndfile-dev libmpg123-dev
+
+And then install a_maze_ing again
+
+### Other OS
+
+You can all the install constructions in [Gosu's documentation](https://github.com/gosu/gosu/wiki) on Github to install Gosu completely
+    
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -72,7 +96,7 @@ Find the way to the gate (the white square), the maze will get more complex as l
 
 #### Multiplayer mode
 
-There will be two player control two square, green and cyan, race to the gate (white square) at the same time. Who get solve the maze first will get the point. 
+There will be two player control two square, green and cyan, race to the gate (white square) at the same time. Who solve the maze first will get the point. 
 
 #### Annoying Friend mode
 
