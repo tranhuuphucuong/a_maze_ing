@@ -18,7 +18,7 @@ Annoying Friend mode       |    Time Hunter mode
 
 ### OSX
 
-Gosu depends on the [SDL 2 library](http://www.libsdl.org/). Please install [Homebrew]{http://brew.sh/} and run 
+Gosu depends on the [SDL 2 library](http://www.libsdl.org/). Please install [Homebrew](http://brew.sh/) and run 
 
     brew install sdl2.
 
@@ -26,7 +26,7 @@ And then install a_maze_ing again
 
 ### Ubuntu
 
-In order to install Gosu on Linux, you need the following packages (the names will be slightly different in every distribution):
+In order for Gosu to be installed on Linux, you need the following packages (the names will be slightly different in every distribution):
 
 `libsdl2-dev`, `libsdl2-ttf-dev`, `libpango1.0-dev`, `libgl1-mesa-dev`, `libopenal-dev`, `libsndfile-dev`, `libmpg123-dev` (starting in 0.12.0)
 
