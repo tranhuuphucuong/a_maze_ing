@@ -2,6 +2,11 @@ require 'rubygems'
 require 'commander'
 
 module AMazeIng
+
+  # For now there are three game mode
+  # 1 is classic
+  # 2 is multiplayer
+  # 3 is anoying friend
   class CLI
     include Commander::Methods    
     
@@ -23,6 +28,8 @@ module AMazeIng
         c.syntax = 'a_maze_ing classic [options]'
         c.description = 'Classic mode, difficulty increase with level'
         c.action do 
+
+            # the second parameter is game mode 
             AMazeIng::GameWindow.new(@full_screen,1).show
         end
       end
