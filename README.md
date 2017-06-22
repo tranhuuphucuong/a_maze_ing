@@ -40,7 +40,7 @@ And then install a_maze_ing again
 
 ### Other OS
 
-You can all the install constructions in [Gosu's documentation](https://github.com/gosu/gosu/wiki) on Github to install Gosu completely
+You can find all install constructions in [Gosu's documentation](https://github.com/gosu/gosu/wiki) on Github to install Gosu completely
     
 ## Installation
 
