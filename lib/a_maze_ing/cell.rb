@@ -11,10 +11,10 @@ module AMazeIng
       @is_current = false
     end
 
-    # cell_index is the index in cells array
-    # cell_index_x and cell_index_y are index of cells in vitual grid
+    # cell_index is the index in one dimensional array
+    # cell_index_x and cell_index_y are indexes in two dimansional array
 
-    # Get cell_index by cell_index_x and cell_index_y
+    # This function will convert two dimensional array index to one dimensional array index
     # if the given indexes is invalid (outside the maze) 
     # it will return cells_length, 
     # which will cause the returned cell (neighbor) to be equal to nil

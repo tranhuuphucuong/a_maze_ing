@@ -20,9 +20,9 @@ Annoying Friend mode       |    Time Hunter mode
 
 Gosu depends on the [SDL 2 library](http://www.libsdl.org/). Please install [Homebrew](http://brew.sh/) and run 
 
-    brew install sdl2.
+    brew install sdl2
 
-And then install a_maze_ing again
+And then install a_maze_ing again  
 
 ### Ubuntu
 
@@ -44,17 +44,7 @@ You can find all install constructions in [Gosu's documentation](https://github.
     
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'a_maze_ing'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Run following command
 
     $ gem install a_maze_ing
 

@@ -19,6 +19,9 @@ module AMazeIng
 
     def check_for_path(ignored_path)
       path = nil
+
+      # I store all the cell in an one dimensional array (cells)
+      # cells[i + j * cols] is the way to refer to it's item
       $cells[@cell_index_x + @cell_index_y * $cols].walls.each_with_index do |wall, i|
         if !wall and i != ignored_path
           if path == nil
